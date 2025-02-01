@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_file_name.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 21:21:16 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/01 19:50:41 by khhihi           ###   ########.fr       */
+/*   Created: 2025/02/01 17:41:17 by khhihi            #+#    #+#             */
+/*   Updated: 2025/02/01 19:16:44 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../includes/so_long.h"
 
-int main(int ac, char **av)
+int	check_file_name(char *str)
 {
-	if (ac < 2)
-		perror("no map to run");
-	if (ac != 2 || !check_file_name(av[1]))
-	{
-		 perror("ERROR: file is not valid");
-		exit(1);
-	}
-	// if (check_map(av[1]))
-	// ;
+	int	i;
+	int	len;
+
+	len = ft_strlen(str);
+	i = 0;
+	if (len > 4 && str[len - 4] == '.' && str[len - 3] == 'b'
+		&& str[len - 2] == 'e' && str[len - 1] == 'r')
+		return (1);
+	return (0);
 }
