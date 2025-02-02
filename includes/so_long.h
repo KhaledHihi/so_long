@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 13:49:39 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/02 18:45:54 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/02 19:18:08 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ typedef struct s_map
 int	check_file_name(char *str);
 int check_map(char *map, t_map *elm);
 void	free_arr(char **p, int rows);
+size_t	ft_strlen(const char *str);
 
 #endif

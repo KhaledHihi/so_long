@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:11 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/02 19:01:55 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/02 19:35:18 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ int check_valid_charcter(int fd, t_map *elm)
 		elm->rows++;
 		free (line);
 	}
-	get_next_line(-2);
-	if (P && C != 0 && E)
+	if (P == 1 && C != 0 && E == 1)
 		return (close(fd), 1);
 	return (0);
 }
@@ -82,7 +81,6 @@ char **read_map(int fd, t_map *data, char *file_name)
 		i++;
 	}
 	map[i] = NULL;
-	get_next_line(-2);
 	return (map);
 }
 void print_map(char **map, int rows)
