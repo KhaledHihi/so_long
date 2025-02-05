@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 13:49:39 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/04 16:59:21 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/05 11:22:24 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 typedef struct s_map
 {
+	void	*mlx;
+	void	*win;
 	char **map;
 	int rows;
 	int colums;

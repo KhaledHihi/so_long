@@ -10,7 +10,7 @@ OBJ = $(SRC:.c=.o)
 libmlx = minilibx-linux/libmlx_Linux.a
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(libmlx) -lXext -lX11 -lm libftprintf.a
+	$(CC) $(OBJ) -o $(NAME) $(libmlx) -lXext -lX11 -lm printf/libftprintf.a
 
 all : $(NAME)
 
