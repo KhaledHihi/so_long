@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 21:21:16 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/04 18:59:01 by khhihi           ###   ########.fr       */
+/*   Created: 2024/11/10 20:55:08 by khhihi            #+#    #+#             */
+/*   Updated: 2024/11/14 12:25:51 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "ft_printf.h"
 
-int main(int ac, char **av)
+void	ft_putstr(char *str, int *len)
 {
-	t_map elm;
+	int	i;
 
-	if (ac != 2 || !check_file_name(av[1]))
-		return (perror("ERROR: file is not valid"), 1);
-	if (check_map(av[1], &elm) == 0)
-		return (perror("invalid map"), 1);
-	
+	i = 0;
+	if (str == NULL)
+	{
+		ft_putstr("(null)", len);
+		return ;
+	}
+	while (str[i])
+	{
+		*len += write(1, &str[i++], 1);
+		if (*len == -1)
+			return ;
+	}
 }

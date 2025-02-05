@@ -6,12 +6,11 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:11 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/02 19:35:18 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/04 16:57:41 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/so_long.h"
-
 
 int check_size(t_map *elm)
 {
@@ -20,6 +19,7 @@ int check_size(t_map *elm)
 
 	i = 1;
 	resolution = ft_strlen(elm->map[0]);
+	elm->colums = resolution - 1;
 	while(elm->map[i])
 	{
 		if (resolution != ft_strlen(elm->map[i]))
@@ -33,6 +33,55 @@ int check_size(t_map *elm)
 // {
 //     //check nafes size
 // }
+int	check_walls(t_map *elm)
+{
+	char **the_map;
+	int (i), (j), (row), (col);
+
+	i = 0;
+	the_map = elm->map;
+	row = elm->rows;
+	col = elm->colums;
+	while (i < row)
+	{
+		j = 0;
+		while(j < col)
+		{
+			if (i == 0 && the_map[i][j] != '1')
+				return (0);
+			if (i == row - 1 && the_map[i][j] != '1')
+				return (0);
+			if (j == 0 && the_map[i][j] != '1')
+				return (0);
+			if (j == col - 1 && the_map[i][j] != '1')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+int	check_valid_char(t_map *elm)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (elm->map[i])
+	{
+		j = 0;
+		while (elm->map[i][j])
+		{
+			if (elm->map[i][j] != 'P' && elm->map[i][j] != 'C'
+				&& elm->map[i][j] != 'E' && elm->map[i][j] != '1' && elm->map[i][j] != '0' && elm->map[i][j] != '\n')
+				return 0;
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
 int check_valid_charcter(int fd, t_map *elm)
 {
 	int (i), (P), (E), (C);
@@ -99,6 +148,13 @@ int check_map(char *file_name, t_map *elm)
 		return (0);
 	elm->map = read_map(fd, elm, file_name);
 	if (!check_size(elm))
+		return (free_arr(elm->map, elm->rows), 0);
+	if ((check_valid_char(elm)) == 0)
+		return (free_arr(elm->map, elm->rows), 0);
+	if (check_walls(elm) == 0)
+		return (free_arr(elm->map, elm->rows), 0);
+	printf("rows : %d, colums : %d\n", elm->rows, elm->colums);
+	if(flood_fill(elm) == 0)
 		return (free_arr(elm->map, elm->rows), 0);
 	free_arr(elm->map, elm->rows);
 	return (1);

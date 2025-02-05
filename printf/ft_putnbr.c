@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 21:21:16 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/04 18:59:01 by khhihi           ###   ########.fr       */
+/*   Created: 2024/11/11 16:13:44 by khhihi            #+#    #+#             */
+/*   Updated: 2024/11/13 12:01:22 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "ft_printf.h"
 
-int main(int ac, char **av)
+void	ft_putnbr(long n, int *len)
 {
-	t_map elm;
-
-	if (ac != 2 || !check_file_name(av[1]))
-		return (perror("ERROR: file is not valid"), 1);
-	if (check_map(av[1], &elm) == 0)
-		return (perror("invalid map"), 1);
-	
+	if (n < 0)
+	{
+		n = -n;
+		ft_putchar('-', len);
+	}
+	if (n < 10)
+		ft_putchar(n + 48, len);
+	else
+	{
+		ft_putnbr(n / 10, len);
+		ft_putnbr(n % 10, len);
+	}
 }

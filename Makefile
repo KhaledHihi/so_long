@@ -2,12 +2,15 @@ NAME = so_long
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = main.c helper_files/check_file_name.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c check_map.c helper_files/ft_free.c helper_files/ft_strlen.c
+SRC = main.c helper_files/check_file_name.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
+	check_map.c helper_files/ft_free.c helper_files/ft_strlen.c helper_files/flood_fill.c \
 
 OBJ = $(SRC:.c=.o)
 
+libmlx = minilibx-linux/libmlx_Linux.a
+
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) -o $(NAME) $(libmlx) -lXext -lX11 -lm libftprintf.a
 
 all : $(NAME)
 

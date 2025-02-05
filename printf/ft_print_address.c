@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_address.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 21:21:16 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/04 18:59:01 by khhihi           ###   ########.fr       */
+/*   Created: 2024/11/12 11:14:52 by khhihi            #+#    #+#             */
+/*   Updated: 2024/11/12 11:54:46 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "ft_printf.h"
 
-int main(int ac, char **av)
+void	ft_printf_address(void *ptr, int *len)
 {
-	t_map elm;
+	unsigned long	p;
 
-	if (ac != 2 || !check_file_name(av[1]))
-		return (perror("ERROR: file is not valid"), 1);
-	if (check_map(av[1], &elm) == 0)
-		return (perror("invalid map"), 1);
-	
+	p = (unsigned long)ptr;
+	ft_putstr("0x", len);
+	ft_putnbr_base(p, 'x', len);
 }
