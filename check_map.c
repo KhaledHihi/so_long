@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:11 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/05 11:40:17 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/06 23:34:48 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,11 @@ int	check_valid_char(t_map *elm)
 }
 int check_valid_charcter(int fd, t_map *elm)
 {
-	int (i), (P), (E), (C);
+	int (i), (P), (E);
 	char *line;
 
 	P = 0;
 	E = 0;
-	C = 0;
 	elm->rows = 0;
 	while((line = get_next_line(fd)))
 	{
@@ -101,19 +100,16 @@ int check_valid_charcter(int fd, t_map *elm)
 			if(line[i] == 'E')
 				E++;
 			if(line[i] == 'C')
-				C++;
+				elm->coins++;
 		}
 		elm->rows++;
 		free (line);
 	}
-	if (P == 1 && C != 0 && E == 1)
+	if (P == 1 && elm->coins != 0 && E == 1)
 		return (close(fd), 1);
 	return (0);
 }
-// int flood_fill()
-// {
-//     // check 0
-// }
+
 char **read_map(int fd, t_map *data, char *file_name)
 {
 	int i;
@@ -143,6 +139,9 @@ void print_map(char **map, int rows)
 int check_map(char *file_name, t_map *elm)
 {
 	int fd;
+
+	elm->collectibles = 0;
+	elm->coins = 0;
 	fd = open (file_name, O_RDONLY);
 	if(!check_valid_charcter(fd, elm))
 		return (0);
@@ -153,9 +152,7 @@ int check_map(char *file_name, t_map *elm)
 		return (free_arr(elm->map, elm->rows), 0);
 	if (check_walls(elm) == 0)
 		return (free_arr(elm->map, elm->rows), 0);
-	printf("rows : %d, colums : %d\n", elm->rows, elm->colums);
 	if(flood_fill(elm) == 0)
 		return (free_arr(elm->map, elm->rows), 0);
-	free_arr(elm->map, elm->rows);
 	return (1);
 }

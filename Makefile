@@ -3,7 +3,7 @@ NAME = so_long
 CFLAGS = -Wall -Wextra -Werror
 
 SRC = main.c helper_files/check_file_name.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-	check_map.c helper_files/ft_free.c helper_files/ft_strlen.c helper_files/flood_fill.c \
+	check_map.c helper_files/ft_free.c helper_files/ft_strlen.c helper_files/flood_fill.c window.c\
 
 OBJ = $(SRC:.c=.o)
 

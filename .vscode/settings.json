@@ -1,8 +1,6 @@
 {
 	"files.associations": {
-		"sstream": "c",
 		"map": "c",
-		"format": "c",
-		"so_long.h": "c"
+		"format": "c"
 	}
 }
