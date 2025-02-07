@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 17:41:17 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/01 19:16:44 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/07 09:35:09 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int	check_file_name(char *str)
 {
-	int	i;
 	int	len;
 
 	len = ft_strlen(str);
-	i = 0;
 	if (len > 4 && str[len - 4] == '.' && str[len - 3] == 'b'
 		&& str[len - 2] == 'e' && str[len - 1] == 'r')
 		return (1);
