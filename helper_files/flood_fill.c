@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:31:22 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/07 10:28:42 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/07 19:07:03 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ void to_fill (t_map *map, char **the_map, int y, int x)
 		return ;
 	if (the_map[y][x] == 'C')
 		map->collectibles++;
+	if ((map->map[y][x] == 'E') && (map->collectibles != map->coins))
+	{
+		the_map[y][x] = 'V';
+		return ;
+	}
 	the_map[y][x] = 'V';
 	to_fill (map, the_map, y + 1, x);
 	to_fill (map, the_map, y - 1, x);
@@ -55,12 +60,12 @@ int flood_fill(t_map *map)
 	int (i), (j);
 
 	i = -1;
-	the_map = malloc(sizeof(char *) * map->rows + 1);
+	the_map = malloc(sizeof(char *) * (map->rows + 1));
 	while (++i < map->rows)
 	{
 		j = -1;
-		the_map[i] = malloc(sizeof(char) * map->colums + 1);
-		while(++j <= map->colums)
+		the_map[i] = malloc(sizeof(char) * ( map->colums + 1));
+		while(++j < map->colums)
 		{
 			the_map[i][j] = map->map[i][j];
 			if (the_map[i][j] == 'P')

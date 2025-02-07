@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 13:49:39 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/06 18:44:46 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/07 19:04:07 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../get_next_line/get_next_line.h"
 # include <fcntl.h>
 # include <mlx.h>
-# include <stdio.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <X11/keysym.h>

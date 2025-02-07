@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:21:16 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/06 23:30:47 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/07 18:30:40 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,4 @@ int main(int ac, char **av)
 	if (check_map(av[1], &elm) == 0)
 		return (perror("invalid map"), 1);
 	run_win(&elm);
-
 }

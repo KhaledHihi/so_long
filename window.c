@@ -6,30 +6,31 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 18:10:58 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/07 16:04:00 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/07 18:18:13 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/so_long.h"
 
-void    cleanup(t_map *map)
+void	cleanup(t_map *map)
 {
-    if (map->floor)
-        mlx_destroy_image(map->mlx, map->floor);
-    if (map->wall)
-        mlx_destroy_image(map->mlx, map->wall);
-    if (map->player)
-        mlx_destroy_image(map->mlx, map->player);
-    if (map->coin)
-        mlx_destroy_image(map->mlx, map->coin);
-    if (map->exit)
-        mlx_destroy_image(map->mlx, map->exit);
-
-    if (map->win)
-        mlx_destroy_window(map->mlx, map->win);
-    if (map->mlx)
-        mlx_destroy_display(map->mlx);
-
+	if (map->exit)
+		mlx_destroy_image(map->mlx, map->exit);
+	if (map->coin)
+		mlx_destroy_image(map->mlx, map->coin);
+	if (map->player)
+		mlx_destroy_image(map->mlx, map->player);
+	if (map->wall)
+		mlx_destroy_image(map->mlx, map->wall);
+	if (map->floor)
+		mlx_destroy_image(map->mlx, map->floor);
+	if (map->win)
+		mlx_destroy_window(map->mlx, map->win);
+	if (map->mlx)
+	{
+		mlx_destroy_display(map->mlx);
+		free(map->mlx);
+	}
     free_arr(map->map, map->rows);
 }
 
