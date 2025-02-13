@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:11 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/13 12:44:26 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/13 13:10:08 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,6 @@ int	check_size(t_map *elm)
 	return (1);
 }
 
-int	check_walls(t_map *elm)
-{
-	char	**the_map;
-
-	int(i), (j), (row), (col);
-	i = 0;
-	the_map = elm->map;
-	row = elm->rows;
-	col = elm->colums;
-	while (i < row)
-	{
-		j = 0;
-		while (j < col)
-		{
-			if (i == 0 && the_map[i][j] != '1')
-				return (0);
-			if (i == row - 1 && the_map[i][j] != '1')
-				return (0);
-			if (j == 0 && the_map[i][j] != '1')
-				return (0);
-			if (j == col - 1 && the_map[i][j] != '1')
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
 int	check_valid_char(t_map *elm)
 {
 	int	i;
@@ -125,13 +97,6 @@ char	**read_map(int fd, t_map *data, char *file_name)
 	}
 	map[i] = NULL;
 	return (map);
-}
-void	print_map(char **map, int rows)
-{
-	for (int i = 0; i < rows; i++)
-	{
-		printf("%s", map[i]);
-	}
 }
 
 int	check_map(char *file_name, t_map *elm)

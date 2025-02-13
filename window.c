@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 18:10:58 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/13 12:19:14 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/13 13:23:17 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,7 @@ void	draw_map(t_map *map)
 		j = 0;
 		while (map->map[i][j])
 		{
-			if (map->map[i][j] == '0')
-				mlx_put_image_to_window(map->mlx, map->win, map->floor, j * 50, i * 50);
-			else if (map->map[i][j] == '1')
-				mlx_put_image_to_window(map->mlx, map->win, map->wall, j * 50, i * 50);
-			else if (map->map[i][j] == 'P')
-				mlx_put_image_to_window(map->mlx, map->win, map->player, j * 50, i * 50);
-			else if (map->map[i][j] == 'C')
-				mlx_put_image_to_window(map->mlx, map->win, map->coin, j * 50, i * 50);
-			else if (map->map[i][j] == 'E')
-				mlx_put_image_to_window(map->mlx, map->win, map->exit, j * 50, i * 50);
-			else if (map->map[i][j] == 'N')
-				mlx_put_image_to_window(map->mlx, map->win, map->enemy, j * 50, i * 50);
+			draw(map, i, j);
 			j++;
 		}
 		i++;
@@ -41,7 +30,7 @@ void	draw_map(t_map *map)
 
 void	move_player(t_map *elm, int move_x, int move_y)
 {
-	int(new_x), (new_y);
+	int (new_x), (new_y);
 	new_x = elm->player_x + move_x;
 	new_y = elm->player_y + move_y;
 	if (elm->map[new_y][new_x] == 'N')
