@@ -13,7 +13,7 @@ BNS_SRC = bonus_files/main_bonus.c bonus_files/helper_files/check_file_name.c \
 	bonus_files/check_map.c bonus_files/helper_files/clean.c bonus_files/helper_files/ft_strlen.c \
 	bonus_files/helper_files/flood_fill.c bonus_files/window.c bonus_files/helper_files/image_to_ptr.c\
 	bonus_files/helper_files/check_walls.c bonus_files/helper_files/draw_map.c bonus_files/helper_files/print_moves_bonus.c \
-	bonus_files/helper_files/itoa.c \
+	bonus_files/helper_files/itoa.c bonus_files/move_enemy.c\
 
 OBJ = $(SRC:.c=.o)
 

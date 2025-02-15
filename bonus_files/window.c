@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 18:10:58 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/15 18:02:51 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/15 19:45:30 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	window_close(t_map *elm)
 int	run_win(t_map *elm)
 {
 	elm->mlx = mlx_init();
+	initialize_enemy(elm);
 	if (!elm->mlx)
 		return (0);
 	elm->win = mlx_new_window(elm->mlx, elm->colums * 50, elm->rows * 50,
@@ -96,6 +97,7 @@ int	run_win(t_map *elm)
 	draw_map(elm);
 	print_moves_in_window(elm);
 	mlx_hook(elm->win, KeyPress, KeyPressMask, &on_keypress, elm);
+	mlx_loop_hook(elm->mlx, game_loop, elm);
 	mlx_hook(elm->win, 17, 0, &window_close, elm);
 	mlx_loop(elm->mlx);
 	return (1);

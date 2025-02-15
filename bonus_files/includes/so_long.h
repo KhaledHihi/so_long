@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 13:49:39 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/15 17:27:32 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/15 19:49:23 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef struct s_map
 	int		player_y;
 	int		collectibles;
 	int		moves;
+	int enemy_x;
+    int enemy_y;
+	int enemy_direction;
 }			t_map;
 
 int			check_file_name(char *str);
@@ -56,4 +59,10 @@ int			check_walls(t_map *elm);
 void		draw(t_map *map, int i, int j);
 char		*ft_itoa(int n);
 void		print_moves_in_window(t_map *map);
+
+void initialize_enemy(t_map *elm);
+void move_enemy(t_map *elm);
+int game_loop(t_map *elm);
+void	draw_map(t_map *map);
+
 #endif
