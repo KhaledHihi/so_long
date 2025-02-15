@@ -6,16 +6,16 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 13:49:39 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/15 16:45:42 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/15 17:27:32 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../get_next_line_/get_next_line.h"
-# include "../minilibx-linux/mlx.h"
-# include "../printf/ft_printf.h"
+# include "../../get_next_line_/get_next_line.h"
+# include "../../minilibx-linux/mlx.h"
+# include "../../printf/ft_printf.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -31,10 +31,12 @@ typedef struct s_map
 	int		rows;
 	int		colums;
 	int		coins;
+	int		count_enemy;
 	void	*player;
 	void	*floor;
 	void	*wall;
 	void	*coin;
+	void	*enemy;
 	void	*exit;
 	int		player_x;
 	int		player_y;
@@ -52,4 +54,6 @@ void		clean_up(t_map *elm);
 int			file_to_ptr(t_map *elm);
 int			check_walls(t_map *elm);
 void		draw(t_map *map, int i, int j);
+char		*ft_itoa(int n);
+void		print_moves_in_window(t_map *map);
 #endif

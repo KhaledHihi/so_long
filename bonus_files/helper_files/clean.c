@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:43:20 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/14 18:33:46 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/13 13:07:19 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	clean_up(t_map *elm)
 		mlx_destroy_image(elm->mlx, elm->coin);
 	if (elm->exit)
 		mlx_destroy_image(elm->mlx, elm->exit);
+	if (elm->enemy)
+		mlx_destroy_image(elm->mlx, elm->enemy);
 	if (elm->win)
 		mlx_destroy_window(elm->mlx, elm->win);
 	if (elm->mlx)

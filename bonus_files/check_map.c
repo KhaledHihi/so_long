@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:11 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/14 20:07:50 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/15 16:32:33 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	check_valid_char(t_map *elm)
 		{
 			if (elm->map[i][j] != 'P' && elm->map[i][j] != 'C'
 				&& elm->map[i][j] != 'E' && elm->map[i][j] != '1'
-				&& elm->map[i][j] != '0' && elm->map[i][j] != '\n')
+				&& elm->map[i][j] != '0' && elm->map[i][j] != '\n'
+				&& elm->map[i][j] != 'N')
 				return (0);
 			j++;
 		}
@@ -58,7 +59,6 @@ int	check_valid_charcter(int fd, t_map *elm)
 	int(i), (P), (E);
 	P = 0;
 	E = 0;
-	elm->rows = 0;
 	while ((line = get_next_line(fd)))
 	{
 		i = -1;
@@ -70,11 +70,13 @@ int	check_valid_charcter(int fd, t_map *elm)
 				E++;
 			if (line[i] == 'C')
 				elm->coins++;
+			if (line[i] == 'N')
+				elm->count_enemy++;
 		}
 		elm->rows++;
 		free(line);
 	}
-	if (P == 1 && elm->coins != 0 && E == 1)
+	if (P == 1 && elm->coins != 0 && E == 1 && elm->count_enemy > 0)
 		return (close(fd), 1);
 	return (0);
 }
