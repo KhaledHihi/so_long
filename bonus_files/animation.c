@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 10:08:53 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/17 16:18:16 by khhihi           ###   ########.fr       */
+/*   Created: 2025/02/17 15:51:29 by khhihi            #+#    #+#             */
+/*   Updated: 2025/02/17 16:13:14 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/so_long.h"
 
-void	ft_putnbr_base(unsigned long nb, char c, int *len)
+void	animate_coin(t_map *map)
 {
-	char	*l;
-	char	*u;
+	static int	frame_counter;
+	const int	delay = 50;
 
-	l = "0123456789abcdef";
-	u = "0123456789ABCDEF";
-	if (nb < 16)
+	frame_counter++;
+	if (frame_counter >= delay)
 	{
-		if (c == 'x')
-			ft_putchar(l[nb], len);
-		else if (c == 'X')
-			ft_putchar(u[nb], len);
+		frame_counter = 0;
+		map->coin_frame = (map->coin_frame + 1) % 10;
 	}
-	else if (nb >= 16)
-	{
-		ft_putnbr_base(nb / 16, c, len);
-		ft_putnbr_base(nb % 16, c, len);
-	}
+	draw_map(map);
 }

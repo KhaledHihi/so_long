@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 18:10:58 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/15 19:45:30 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/17 16:55:28 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	move_player(t_map *elm, int move_x, int move_y)
 	elm->player_y = new_y;
 	elm->map[new_y][new_x] = 'P';
 	draw_map(elm);
+	elm->moves++;
 	print_moves_in_window(elm);
 }
 
@@ -82,10 +83,16 @@ int	window_close(t_map *elm)
 	return (0);
 }
 
+static int	animation(t_map *map)
+{
+	animate_coin(map);
+	print_moves_in_window(map);
+	return (1);
+}
+
 int	run_win(t_map *elm)
 {
 	elm->mlx = mlx_init();
-	initialize_enemy(elm);
 	if (!elm->mlx)
 		return (0);
 	elm->win = mlx_new_window(elm->mlx, elm->colums * 50, elm->rows * 50,
@@ -97,7 +104,7 @@ int	run_win(t_map *elm)
 	draw_map(elm);
 	print_moves_in_window(elm);
 	mlx_hook(elm->win, KeyPress, KeyPressMask, &on_keypress, elm);
-	mlx_loop_hook(elm->mlx, game_loop, elm);
+	mlx_loop_hook(elm->mlx, &animation, elm);
 	mlx_hook(elm->win, 17, 0, &window_close, elm);
 	mlx_loop(elm->mlx);
 	return (1);

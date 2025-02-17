@@ -6,12 +6,17 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:43:20 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/13 13:07:19 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/17 16:25:46 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
+void	clean_coins(t_map *elm)
+{
+	int i = 9;
+	while(i >= 0 )
+		mlx_destroy_image(elm->mlx, elm->coin[i--]);
+}
 void	clean_up(t_map *elm)
 {
 	if (elm->floor)
@@ -20,14 +25,13 @@ void	clean_up(t_map *elm)
 		mlx_destroy_image(elm->mlx, elm->wall);
 	if (elm->player)
 		mlx_destroy_image(elm->mlx, elm->player);
-	if (elm->coin)
-		mlx_destroy_image(elm->mlx, elm->coin);
 	if (elm->exit)
 		mlx_destroy_image(elm->mlx, elm->exit);
 	if (elm->enemy)
 		mlx_destroy_image(elm->mlx, elm->enemy);
 	if (elm->win)
 		mlx_destroy_window(elm->mlx, elm->win);
+	clean_coins(elm);
 	if (elm->mlx)
 	{
 		mlx_destroy_display(elm->mlx);
