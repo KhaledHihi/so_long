@@ -6,17 +6,21 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 18:43:20 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/17 16:25:46 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/17 17:33:37 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
 void	clean_coins(t_map *elm)
 {
-	int i = 9;
-	while(i >= 0 )
+	int	i;
+
+	i = 9;
+	while (i >= 0)
 		mlx_destroy_image(elm->mlx, elm->coin[i--]);
 }
+
 void	clean_up(t_map *elm)
 {
 	if (elm->floor)

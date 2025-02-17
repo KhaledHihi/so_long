@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 18:10:58 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/17 16:55:28 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/17 17:43:02 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ void	move_player(t_map *elm, int move_x, int move_y)
 	if (elm->map[new_y][new_x] == '1')
 		return ;
 	if (elm->map[new_y][new_x] == 'C')
-	{
 		elm->collectibles--;
-		elm->map[new_y][new_x] = '0';
-	}
 	if (elm->map[new_y][new_x] == 'E')
 	{
 		if (elm->collectibles == 0)
@@ -58,24 +55,6 @@ void	move_player(t_map *elm, int move_x, int move_y)
 	print_moves_in_window(elm);
 }
 
-int	on_keypress(int key_code, t_map *elm)
-{
-	if (key_code == XK_Escape)
-	{
-		clean_up(elm);
-		exit(0);
-	}
-	else if (key_code == XK_w || key_code == XK_Up)
-		move_player(elm, 0, -1);
-	else if (key_code == XK_s || key_code == XK_Down)
-		move_player(elm, 0, 1);
-	else if (key_code == XK_a || key_code == XK_Left)
-		move_player(elm, -1, 0);
-	else if (key_code == XK_d || key_code == XK_Right)
-		move_player(elm, 1, 0);
-	return (1);
-}
-
 int	window_close(t_map *elm)
 {
 	clean_up(elm);
@@ -83,7 +62,7 @@ int	window_close(t_map *elm)
 	return (0);
 }
 
-static int	animation(t_map *map)
+int	animation(t_map *map)
 {
 	animate_coin(map);
 	print_moves_in_window(map);

@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:11 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/14 20:07:50 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/17 17:52:53 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ int	check_valid_char(t_map *elm)
 	}
 	return (1);
 }
+
 int	check_valid_charcter(int fd, t_map *elm)
 {
 	char	*line;
 
-	int(i), (P), (E);
+	int (i), (P), (E);
 	P = 0;
 	E = 0;
-	elm->rows = 0;
 	while ((line = get_next_line(fd)))
 	{
 		i = -1;

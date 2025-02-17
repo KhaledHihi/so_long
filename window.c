@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 18:10:58 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/15 16:46:45 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/17 17:53:56 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	move_player(t_map *elm, int move_x, int move_y)
 	int (new_x), (new_y);
 	new_x = elm->player_x + move_x;
 	new_y = elm->player_y + move_y;
-
 	if (elm->map[new_y][new_x] == '1')
 		return ;
 	if (elm->map[new_y][new_x] == 'C')
@@ -45,7 +44,7 @@ void	move_player(t_map *elm, int move_x, int move_y)
 	{
 		if (elm->collectibles == 0)
 			return (ft_printf("moves: %d\n", ++(elm->moves)),
-					ft_printf("You win!\n"), clean_up(elm), exit(0));
+				ft_printf("You win!\n"), clean_up(elm), exit(0));
 		else
 			return ;
 	}

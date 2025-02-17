@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:14:09 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/17 16:43:12 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/17 17:36:21 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	file_to_ptr(t_map *elm)
 	elm->coin[9] = mlx_xpm_file_to_image(elm->mlx, "images/10.xpm", &w, &h);
 	elm->enemy = mlx_xpm_file_to_image(elm->mlx, "images/enemy.xpm", &w, &h);
 	elm->exit = mlx_xpm_file_to_image(elm->mlx, "images/exit.xpm", &w, &h);
-	if (!elm->floor || !elm->wall || !elm->player || !elm->coin[0] || !elm->coin[1]
-		|| !elm->coin[2] || !elm->coin[3] || !elm->coin[4] || !elm->coin[5]
-		|| !elm->coin[6] || !elm->coin[6] || !elm->coin[7] || !elm->coin[8]
-		|| !elm->enemy || !elm->coin[9] || !elm->exit )
+	if (!elm->floor || !elm->wall || !elm->player || !elm->coin[0]
+		|| !elm->coin[1] || !elm->coin[2] || !elm->coin[3] || !elm->coin[4]
+		|| !elm->coin[5] || !elm->coin[6] || !elm->coin[6] || !elm->coin[7]
+		|| !elm->coin[8] || !elm->enemy || !elm->coin[9] || !elm->exit)
 	{
 		return (clean_up(elm), 0);
 	}
