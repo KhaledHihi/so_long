@@ -6,28 +6,11 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:11 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/17 17:51:37 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/18 21:20:41 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/so_long.h"
-
-int	check_size(t_map *elm)
-{
-	int		i;
-	size_t	resolution;
-
-	i = 1;
-	resolution = ft_strlen(elm->map[0]);
-	elm->colums = resolution - 1;
-	while (elm->map[i])
-	{
-		if (resolution != ft_strlen(elm->map[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 int	check_valid_char(t_map *elm)
 {
@@ -53,29 +36,36 @@ int	check_valid_char(t_map *elm)
 	return (1);
 }
 
+void	increm(t_map *elm, int i, char *line, int *E)
+{
+	if (line[i] == 'E')
+		(*E)++;
+	if (line[i] == 'C')
+		elm->coins++;
+	if (line[i] == 'N')
+		elm->count_enemy++;
+}
+
 int	check_valid_charcter(int fd, t_map *elm)
 {
 	char	*line;
-	
+
 	int (i), (P), (E);
 	P = 0;
 	E = 0;
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		i = -1;
 		while (line[++i])
 		{
 			if (line[i] == 'P')
 				P++;
-			if (line[i] == 'E')
-				E++;
-			if (line[i] == 'C')
-				elm->coins++;
-			if (line[i] == 'N')
-				elm->count_enemy++;
+			increm(elm, i, line, &E);
 		}
 		elm->rows++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	if (P == 1 && elm->coins != 0 && E == 1 && elm->count_enemy > 0)
 		return (close(fd), 1);

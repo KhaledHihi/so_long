@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:11 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/17 17:52:53 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/18 20:56:36 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	check_valid_charcter(int fd, t_map *elm)
 	int (i), (P), (E);
 	P = 0;
 	E = 0;
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		i = -1;
 		while (line[++i])
@@ -73,6 +74,7 @@ int	check_valid_charcter(int fd, t_map *elm)
 		}
 		elm->rows++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	if (P == 1 && elm->coins != 0 && E == 1)
 		return (close(fd), 1);
