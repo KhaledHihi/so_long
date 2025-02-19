@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:11 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/19 19:20:30 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/19 20:06:45 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ char	**read_map(int fd, t_map *data, char *file_name)
 		map[i] = get_next_line(fd);
 		i++;
 	}
+	get_next_line(-2);
 	map[i] = NULL;
 	return (map);
 }
@@ -108,6 +109,7 @@ int	check_map(char *file_name, t_map *elm)
 	fd = open(file_name, O_RDONLY);
 	if (!check_valid_charcter(fd, elm))
 		return (0);
+	get_next_line(-2);
 	elm->map = read_map(fd, elm, file_name);
 	if (!check_size(elm))
 		return (free_arr(elm->map, elm->rows), 0);
@@ -119,6 +121,5 @@ int	check_map(char *file_name, t_map *elm)
 		return (free_arr(elm->map, elm->rows), 0);
 	if (elm->colums > 77 || elm->rows > 42)
 		return (free_arr(elm->map, elm->rows), 0);
-	get_next_line(-2);
 	return (1);
 }
