@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 13:49:39 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/18 21:07:47 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/19 19:31:59 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void		draw_map(t_map *map);
 int			on_keypress(int key_code, t_map *elm);
 void		move_player(t_map *elm, int move_x, int move_y);
 int			check_size(t_map *elm);
+char		*ft_strjoin(char *s1, char *s2);
 
 #endif

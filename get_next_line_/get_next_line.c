@@ -5,106 +5,116 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 09:34:59 by mdahani           #+#    #+#             */
-/*   Updated: 2025/02/02 19:18:18 by khhihi           ###   ########.fr       */
+/*   Created: 2024/11/25 15:42:27 by khhihi            #+#    #+#             */
+/*   Updated: 2025/02/19 19:36:35 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "../includes/so_long.h"
 
-static char	*fill_line_buffer(int fd, char *remainder, char *buffer);
-static char	*get_remainder(char *line);
-static char	*ft_strchr(char *s, int c);
-
-char	*get_next_line(int fd)
+static void	ft_free(char *buff)
 {
-	static char	*remainder;
-	char		*line;
-	char		*buffer;
+	if (!buff)
+		return ;
+	free(buff);
+}
 
-	buffer = malloc(BUFFER_SIZE + 1 * sizeof(char));
-	if (fd < 0 || BUFFER_SIZE <= 0)
+static char	*next_line(char *buff)
+{
+	char	*nline;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (buff[i] && buff[i] != '\n')
+		i++;
+	if (!buff[i])
+		return (ft_free(buff), NULL);
+	i++;
+	nline = ft_malloc((ft_strleen(buff) - i + 1), sizeof(char));
+	if (!nline)
+		return (ft_free(buff), NULL);
+	while (buff[i])
 	{
-		free(remainder);
-		free(buffer);
-		remainder = NULL;
-		buffer = NULL;
-		return (NULL);
+		nline[j] = buff[i];
+		i++;
+		j++;
 	}
-	if (!buffer)
+	nline[j] = '\0';
+	ft_free(buff);
+	return (nline);
+}
+
+static char	*get_line(char *buff)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	if (!buff[i])
 		return (NULL);
-	line = fill_line_buffer(fd, remainder, buffer);
-	free(buffer);
-	buffer = NULL;
+	while (buff[i] && buff[i] != '\n')
+		i++;
+	if (buff[i] == '\n')
+		line = ft_malloc(i + 2, sizeof(char));
+	else
+		line = ft_malloc(i + 1, sizeof(char));
 	if (!line)
-		return (NULL);
-	remainder = get_remainder(line);
+		return (ft_free(buff), NULL);
+	i = 0;
+	while (buff[i] && buff[i] != '\n')
+	{
+		line[i] = buff[i];
+		i++;
+	}
+	if (buff[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
 	return (line);
 }
 
-static char	*get_remainder(char *line)
+static char	*read_file(char *buff, int fd)
 {
-	char		*remainder;
-	ssize_t		i;
+	char	*readed;
+	ssize_t	r;
 
-	i = 0;
-	while (line[i] != '\n' && line[i] != '\0')
-		i++;
-	if (line[i] == 0 || line[1] == 0)
+	readed = ft_malloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!readed)
 		return (NULL);
-	remainder = ft_substr(line, i + 1, ft_strlen(line) - i);
-	if (remainder[0] == 0)
-	{
-		free(remainder);
-		remainder = NULL;
-	}
-	line[i + 1] = 0;
-	return (remainder);
-}
-
-static char	*fill_line_buffer(int fd, char *remainder, char *buffer)
-{
-	ssize_t	char_read;
-	char	*tmp;
-
 	while (1)
 	{
-		char_read = read(fd, buffer, BUFFER_SIZE);
-		if (char_read == -1)
-		{
-			free(remainder);
-			return (NULL);
-		}
-		else if (char_read == 0)
+		r = read(fd, readed, BUFFER_SIZE);
+		if (r < 0)
+			return (ft_free(readed), ft_free(buff), NULL);
+		if (!r)
 			break ;
-		buffer[char_read] = 0;
-		if (!remainder)
-			remainder = ft_strdup("");
-		tmp = remainder;
-		remainder = ft_strjoin(tmp, buffer);
-		free(tmp);
-		tmp = NULL;
-		if (ft_strchr(buffer, '\n'))
+		readed[r] = 0;
+		buff = ft_strjoiin(buff, readed);
+		if (!buff)
+			return (ft_free(readed), NULL);
+		if (ft_strchr(readed, '\n'))
 			break ;
 	}
-	return (remainder);
+	ft_free(readed);
+	return (buff);
 }
 
-static char	*ft_strchr(char *s, int c)
+char	*get_next_line(int fd)
 {
-	unsigned int	i;
-	char			cc;
+	static char	*buff;
+	char		*line;
 
-	cc = (char) c;
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == cc)
-			return ((char *) &s[i]);
-		i++;
-	}
-	if (s[i] == cc)
-		return ((char *) &s[i]);
-	return (NULL);
+	if (fd == -2)
+		return (ft_free (buff), NULL);
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= 2147483647)
+		return (NULL);
+	buff = read_file(buff, fd);
+	if (!buff)
+		return (NULL);
+	line = get_line(buff);
+	buff = next_line(buff);
+	if (!buff)
+		ft_free(buff);
+	return (line);
 }

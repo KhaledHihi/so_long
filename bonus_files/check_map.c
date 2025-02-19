@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 21:22:11 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/18 21:20:41 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/19 19:26:09 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	check_valid_charcter(int fd, t_map *elm)
 		free(line);
 		line = get_next_line(fd);
 	}
+	get_next_line(-2);
 	if (P == 1 && elm->coins != 0 && E == 1 && elm->count_enemy > 0)
 		return (close(fd), 1);
 	return (0);
@@ -87,6 +88,7 @@ char	**read_map(int fd, t_map *data, char *file_name)
 		map[i] = get_next_line(fd);
 		i++;
 	}
+	get_next_line(-2);
 	map[i] = NULL;
 	return (map);
 }
