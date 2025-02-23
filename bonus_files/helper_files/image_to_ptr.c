@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:14:09 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/19 19:40:51 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/20 15:53:35 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	file_to_ptr(t_map *elm)
 	int (w), (h);
 	elm->floor = mlx_xpm_file_to_image(elm->mlx, "textures/floor.xpm", &w, &h);
 	elm->wall = mlx_xpm_file_to_image(elm->mlx, "textures/wall.xpm", &w, &h);
-	elm->player = mlx_xpm_file_to_image(elm->mlx, "textures/player.xpm", &w, &h);
+	elm->player = mlx_xpm_file_to_image(elm->mlx, "textures/player.xpm", &w,
+			&h);
 	elm->coin[0] = mlx_xpm_file_to_image(elm->mlx, "textures/coin.xpm", &w, &h);
 	elm->coin[1] = mlx_xpm_file_to_image(elm->mlx, "textures/2.xpm", &w, &h);
 	elm->coin[2] = mlx_xpm_file_to_image(elm->mlx, "textures/3.xpm", &w, &h);

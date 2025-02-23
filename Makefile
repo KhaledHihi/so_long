@@ -21,22 +21,32 @@ BNS_OBJ = $(BNS_SRC:.c=.o)
 
 libmlx = minilibx-linux/libmlx_Linux.a
 
-$(NAME): $(OBJ)
+PRINTF_DIR = printf/libftprintf.a
+
+$(NAME): $(OBJ) $(PRINTF_DIR)
 	$(CC) $(OBJ) -o $(NAME) $(libmlx) -lXext -lX11 -lm printf/libftprintf.a
 
-all : $(NAME)
+$(PRINTF_DIR):
+	@$(MAKE) -C printf
+
+
+all : $(NAME) $(PRINTF_DIR)
+
+bonus: $(BNS_NAME)
 
 %.o : %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-bonus : $(BNS_OBJ)
+$(BNS_NAME): $(BNS_OBJ) $(PRINTF_DIR)
 	$(CC) $(BNS_OBJ) -o $(BNS_NAME) $(libmlx) -lXext -lX11 -lm printf/libftprintf.a
 
 clean:
 	$(RM) $(OBJ) $(BNS_OBJ)
+	@$(MAKE) -C printf clean
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(BNS_NAME)
+	@$(MAKE) -C printf fclean
 
 re: fclean all
 
