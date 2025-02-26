@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:14:09 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/20 15:54:07 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/26 15:40:28 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	file_to_ptr(t_map *elm)
 	elm->exit = mlx_xpm_file_to_image(elm->mlx, "textures/exit.xpm", &w, &h);
 	if (!elm->floor || !elm->wall || !elm->player || !elm->coin || !elm->exit)
 	{
-		return (clean_up(elm), 0);
+		return (clean_up(elm), exit(1), 0);
 	}
 	return (1);
 }

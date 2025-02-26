@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 18:10:58 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/17 17:43:02 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/23 16:10:01 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	draw_map(t_map *map)
 		}
 		i++;
 	}
+	print_moves_in_window(map);
 }
 
 void	move_player(t_map *elm, int move_x, int move_y)
@@ -52,7 +53,6 @@ void	move_player(t_map *elm, int move_x, int move_y)
 	elm->map[new_y][new_x] = 'P';
 	draw_map(elm);
 	elm->moves++;
-	print_moves_in_window(elm);
 }
 
 int	window_close(t_map *elm)
@@ -82,7 +82,7 @@ int	run_win(t_map *elm)
 		return (clean_up(elm), 0);
 	draw_map(elm);
 	print_moves_in_window(elm);
-	mlx_hook(elm->win, KeyPress, KeyPressMask, &on_keypress, elm);
+	mlx_key_hook(elm->win, &on_keypress, elm);
 	mlx_loop_hook(elm->mlx, &animation, elm);
 	mlx_hook(elm->win, 17, 0, &window_close, elm);
 	mlx_loop(elm->mlx);

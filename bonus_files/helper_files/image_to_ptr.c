@@ -6,7 +6,7 @@
 /*   By: khhihi <khhihi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:14:09 by khhihi            #+#    #+#             */
-/*   Updated: 2025/02/20 15:53:35 by khhihi           ###   ########.fr       */
+/*   Updated: 2025/02/26 15:40:08 by khhihi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	file_to_ptr(t_map *elm)
 		|| !elm->coin[5] || !elm->coin[6] || !elm->coin[6] || !elm->coin[7]
 		|| !elm->coin[8] || !elm->enemy || !elm->coin[9] || !elm->exit)
 	{
-		return (clean_up(elm), 0);
+		return (clean_up(elm), exit(1), 0);
 	}
 	return (1);
 }
